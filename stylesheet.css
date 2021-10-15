@@ -1,0 +1,669 @@
+* {
+   box-sizing: border-box;
+}
+
+body {
+   margin: 0;
+   font-family: "Hiragino Kaku Gothic ProN", sans-serif;
+}
+
+a {
+   text-decoration: none;
+}
+a.disabled{
+   pointer-events: none;
+}
+li{
+   list-style: none;
+}
+.content-position-fix{
+   height: 65px;
+}
+/* ------------ ハンバーガーメニューここから ------------ */
+.hamburger {
+   display : none;
+   position: fixed;
+   z-index : 99;
+   right : 13px;
+   top   : 12px;
+   width : 42px;
+   height: 42px;
+   cursor: pointer;
+   text-align: center;
+}
+.hamburger span {
+   display : block;
+   position: absolute;
+   width   : 30px;
+   height  : 2px ;
+   left    : 6px;
+   background : rgb(255, 255, 255);
+   -webkit-transition: 0.3s ease-in-out;
+   -moz-transition   : 0.3s ease-in-out;
+   transition        : 0.3s ease-in-out;
+}
+.hamburger span:nth-child(1) {
+   top: 10px;
+}
+.hamburger span:nth-child(2) {
+   top: 20px;
+}
+.hamburger span:nth-child(3) {
+   top: 30px;
+}
+
+ /* ナビ開いてる時のボタン */
+.hamburger-bg{
+   position: fixed;
+   width:100%;
+   top: 0;
+   right: 0;
+   bottom: 0;
+   left: 0;
+   background-color: rgba(0, 0, 0);
+   z-index: 4;
+   opacity: 0;
+   transition: all 0.9s;
+   visibility: hidden;
+}
+.hamburger-bg.active{
+   opacity: 0.6;
+   visibility: visible;
+}
+
+.hamburger.active {
+   -webkit-transition: all 0.2s ease-in-out;
+   -o-transition     : all 0.2s ease-in-out;
+   transition        : all 0.2s ease-in-out;
+   -webkit-transition-delay: 0.5s;
+   -o-transition-delay     : 0.5s;
+   transition-delay        : 0.5s;
+   -webkit-transform: rotate(45deg);
+   -ms-transform    : rotate(45deg);
+   -o-transform     : rotate(45deg);
+   transform        : rotate(45deg);
+}
+.hamburger.active span:nth-child(2){
+   width: 0px;
+}
+.hamburger.active span:nth-child(1),
+.hamburger.active span:nth-child(3){
+   -webkit-transition-delay: 0.3s;
+   -o-transition-delay: 0.3s;
+   transition-delay: 0.3s;
+}
+.hamburger.active span:nth-child(1){
+   -webkit-transform: translateY(4px);
+   -ms-transform    : translateY(4px);
+   -o-transform     : translateY(4px);
+   transform        : translateY(4px);
+}
+.hamburger.active span:nth-child(3){
+   -webkit-transform: translateY(-16px) rotate(90deg);
+   -ms-transform: translateY(-16px) rotate(90deg);
+   -o-transform : translateY(-16px) rotate(90deg);
+   transform    : translateY(-16px) rotate(90deg);
+}
+nav.globalMenuSp {
+   position: fixed;
+   z-index : 98;
+   top  : 0;
+   left : 0;
+   background: #fff;
+   text-align: center;
+   transform: translateY(-100%);
+   transition: all 0.9s;
+   width: 100%;
+   opacity: 0.7;
+}
+nav.globalMenuSp ul {
+   background: rgb(197, 197, 197);
+   margin: 0 auto;
+   padding: 0;
+   width: 100%;
+}
+nav.globalMenuSp ul li {
+   list-style-type: none;
+   padding: 0;
+   width: 100%;
+   border-bottom: 1px solid #fff;
+   font-family: 'Kaisei Tokumin', serif;
+}
+nav.globalMenuSp ul li:last-child {
+   padding-bottom: 0;
+   border-bottom: none;
+}
+nav.globalMenuSp ul li:hover{
+   background :#ddd;
+}
+nav.globalMenuSp ul li a {
+   font-weight: 600;
+   display: block;
+   color: rgb(34, 34, 34);
+   padding: 1em 0;
+   text-decoration :none;
+}
+ /* jQueryで付与・削除するクラス */
+nav.globalMenuSp.active {
+   transform: translateY(0%);
+}
+/* ------------ ハンバーガーメニューここまで ------------ */
+
+.fst-view-container {
+   max-width: 1170px;
+   width: 100%;
+   padding: 0 15px;
+   margin: 0 auto;
+}
+.container {
+   max-width: 1170px;
+   width: 100%;
+   padding: 60px 15px;
+   margin: 0 auto;
+   color: #5e6f84;
+}
+
+.top-wrapper {
+   padding: 180px 0 100px 0;
+   background-image: url(./img/main.jpg);
+   background-size: cover;
+   color: white;
+   text-align: center;
+}
+
+.top-wrapper h1 {
+   opacity: 0.7;
+   font-size: 52px;
+   letter-spacing: 5px;
+   font-family: 'Caveat', cursive;
+   font-family: 'Dancing Script', cursive;
+}
+
+.top-wrapper p {
+   opacity: 0.7;
+}
+
+.btn-wrapper {
+   text-align: center;
+   margin: 20px 0;
+}
+
+.btn-wrapper p {
+   margin: 10px 0;
+}
+
+.signup {
+   background-color: #239b76;
+}
+
+.facebook {
+   background-color: #3b5998;
+   margin-right: 10px;
+}
+
+.twitter {
+   background-color: #55acee;
+}
+
+.btn {
+   padding: 8px 24px;
+   color: white;
+   display: inline-block;
+   opacity: 0.8;
+   border-radius: 4px;
+   text-align: center;
+}
+
+.btn:hover {
+   opacity: 1;
+}
+
+.fa {
+   margin-right: 5px;
+}
+
+header {
+   height: 65px;
+   width: 100%;
+   background-color: rgba(34, 49, 52, 0.9);
+   position :fixed;
+   top: 0;
+   z-index: 10;
+}
+#top-btn{
+   cursor:pointer;
+   height: 65px;
+}
+
+@media (hover: hover) {
+   /* hover指定できるPCを想定したスタイル */
+   #top-btn:hover{
+      opacity: 0.7;
+      transition: all 0.3s;
+   }
+}
+@media (hover: none) {
+   /* hoverが使えないタッチ端末を想定した装飾 */
+   /*対象タグにontouchstart=""を指定した*/
+   #top-btn:active{
+      opacity: 0.7;
+      transition: all 0.3s;
+   }
+}
+
+.logo {
+   width: 177px;
+   margin-top: 13px;
+}
+
+.header-left {
+   float: left;
+   line-height: 65px;
+   display: block;
+}
+
+.header-right{
+   float: right;
+   margin-right: -25px;
+}
+
+.header-right a {
+   line-height: 65px;
+   padding: 0 25px;
+   color: white;
+   display: block;
+   float: left;
+   transition: all 0.5s;
+   font-family: 'Kaisei Tokumin', serif;
+   font-size:1.1em;
+}
+
+.header-right a:hover {
+   background-color: rgba(255, 255, 255, 0.3);
+}
+
+.skill-wrapper {
+   padding-left: 5%;
+   padding-right: 5%;
+   background-color: #f7f7f7;
+   text-align: center;
+}
+
+.heading h2 {
+   font-weight: normal;
+}
+.skill {
+   float: left;
+   width: 25%;
+}
+
+.skill-icon {
+   position: relative;
+}
+
+.skill-icon p {
+   position: absolute;
+   width: 100%;
+   bottom: -1em;
+   line-height: 200px;
+   color: white;
+}
+
+.text-contents {
+   width: 80%;
+   display: inline-block;
+   margin-top: 15px;
+   font-size: 0.9em;
+   color: #b3aeb5;
+}
+.clear{
+   clear:left;
+}
+.heading h3 {
+   font-weight: normal;
+}
+
+/* ------------ スライド部分 ------------ */
+.slide-wrapper ul {
+   list-style: none;
+}
+.content-title {
+   font-family: 'Kaisei Tokumin', serif;
+   font-size: 3em;
+   margin: 0 0 60px 0;
+}
+.slide-wrapper{
+   text-align: center;
+}
+.change-btn-wrapper {
+   width: 500px;
+   margin: 20px auto;
+}
+.change-btn-wrapper:after {
+   content: "";
+   clear: both;
+   display: block;
+}
+.prev-btn {
+   cursor: pointer;
+   float: left;
+   /* 初期状態では非表示にしてください */
+   display: none;
+}
+.next-btn {
+   cursor: pointer;
+   float: right;
+}
+.slides {
+   padding: 0;
+}
+.slide {
+   display: none;
+}
+.active {
+   display: block;
+}
+.slide img {
+   width: 500px;
+   height: auto;
+   border-radius: 5px;
+}
+.index-btn-wrapper {
+   margin-top: 20px;
+}
+.index-btn {
+   display: inline-block;
+   color: #4e90af;
+   background-color: #e0f5ff;
+   width: 40px;
+   padding: 6px 0;
+   margin: 0 5px;
+   border-radius: 3px;
+   cursor: pointer;
+}
+.index-btn:hover {
+   color: #fff;
+   background-color: #5cabd0;
+}
+
+/* ------------ モーダル ------------ */
+
+.overlay{
+   display: none;
+   position: fixed;
+   width:100%;
+   top: 0;
+   right: 0;
+   bottom: 0;
+   left: 0;
+   background-color: rgba(0, 0, 0, 0.6);
+   z-index: 99;
+}
+.modal {
+   display: none;
+   position: fixed;
+   top: 20%;
+   left: 38%;
+   background-color: #e6ecf0;
+   padding: 20px 0 40px;
+   border-radius: 10px;
+   width: 450px;
+   height: auto;
+   text-align: center;
+   z-index: 100;
+}
+.fa-times {
+   position: absolute;
+   top: 12px;
+   right: 12px;
+   color: rgba(128, 128, 128, 0.46);
+   cursor: pointer;
+}
+#signup-form , #login-form{
+   width: 100%;
+}
+#signup-form h2 , #login-form h2{
+   color: #5f5d60;
+   letter-spacing: 1px;
+   margin-bottom: 40px;
+}
+#signup-form input , #login-form input{
+   width: 320px;
+   margin-bottom: 20px;
+   font-size: 0.9em;
+   padding: 12px 12px;
+   border: 1px solid #d0d5d8;
+   border-radius: 5px;
+}
+#submit-btn {
+   display: inline-block;
+   padding: 14px 140px;
+   background-color: #5dca88;
+   border: none;
+   border-radius: 3px;
+   color: white;
+   margin: 10px auto;
+   cursor: pointer;
+}
+
+/* ------------ Q＆A ------------ */
+.qa-wrapper {
+   background-color: #e6ecf0;
+   text-align: center;
+}
+#qa-list {
+   width: 500px;
+   margin: 0 auto;
+   padding: 0;
+   list-style: none;
+}
+.qa-list-item {
+   margin:10px;
+   border-bottom:1px solid #ccc;
+   position:relative;
+   cursor:pointer;
+   text-align: left;
+}
+.qa-list-item h3 {
+   font-size: 1em;
+}
+.qa-list-item span {
+   position:absolute;
+   top:0;
+   right:5px;
+   color:#ccc;
+   font-size:0.8em;
+}
+.answer {
+   font-size: 0.9em;
+   padding: 5px 0px;
+   margin-bottom: 15px;
+   display: none;
+}
+/* ------------ ご意見 ------------ */
+.section-title h3::before, .section-title h3::after{
+   content: "";
+   background-color: #616161;
+   display:inline-block;
+   width: 40px;
+   height: 1px;
+   margin: 0 2rem;
+   vertical-align: middle;
+}
+.form-wrapper {
+   font-weight: 400;
+   color: #888;
+   -webkit-font-smoothing: antialiased;
+}
+.section-title {
+   color: #555;
+   padding-bottom: 10px;
+   text-align: center;
+}
+.section-title h3 {
+   margin: 10px 0;
+   font-size: 1.6em;
+   font-weight: 300;
+   line-height: 36px;
+}
+.section-content {
+   width: 80%;
+   margin: 0 auto;
+}
+.call-to-action {
+   text-align: center;
+   font-size: 1.1em;
+}
+.option-wrapper {
+   text-align: center;
+   margin-bottom: 15px;
+}
+.option-group {
+   margin-bottom: 12px;
+   margin: 20px auto;
+   display: inline-block;
+   margin: 20px auto;
+}
+.option-image {
+   width: 120px;
+   height: auto;
+}
+.option-btn {
+   cursor: pointer;
+   width: 154px;
+   margin: 10px;
+   padding: 12px 0;
+   text-align: center;
+   background-color: #5dca88;
+   box-shadow: 0px 4px #279C56;
+   border-radius: 3px;
+   color: #fff;
+   font-size: 1.1em;
+}
+.option-btn:active{
+   position: relative;
+   top: 2px;
+   box-shadow: none;
+}
+.form .select-form, .form .text-form {
+   margin: 0;
+   padding: 0 10px;
+   border: none;
+   color: #202020;
+   font-family: 'Open Sans', sans-serif;
+   font-weight: 300;
+   border-radius: 0;
+   box-shadow: none;
+   transition: all .3s;
+   padding: 15px;
+   background: rgba(0, 0, 0, 0.08);
+}
+.select-form {
+   margin: 10px 0;
+   width: 100%;
+}
+.text-form {
+   width: 100%;
+   height: 75px;
+}
+.btn-submit {
+   font-family: 'Dosis', sans-serif;
+   font-size: 1.2em;
+   font-weight: 600;
+   background: #5983ff;
+   border: 1px solid #5979ff;
+   color: white;
+   box-shadow: inset 0 1px 0 #5867ed;
+   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+   transition: all .3s;
+   padding: 12px 26px;
+   cursor: pointer;
+}
+.output-inner {
+   padding: 10px 20px;
+   border: 2px dotted;
+   border-radius: 3px;
+   width: 100%;
+}
+.output-item {
+   margin: 8px 0px;
+}
+.error-message {
+   color: #F51414;
+   height: 20px;
+}
+/* ------------ contact ------------ */
+.contact-section {
+   color: #6a6a6a;
+   background-color: #e6ecf0;
+}
+.contact-section h3, .contact-section h4 {
+   color: #404040;
+}
+.contact-section h4 {
+   font-size: 1.4em;
+   padding-bottom: 10px;
+}
+.contact-form input[type="text"], .contact-form input[type="email"], .contact-form textarea {
+   margin: 0;
+   padding: 0 10px;
+   vertical-align: middle;
+   background: rgba(0, 0, 0, 0.08);
+   border: none;
+   width: 85%;
+   color: #202020;
+   font-family: 'Open Sans', sans-serif;
+   font-weight: 300;
+   border-radius: 0;
+   box-shadow: none;
+   transition: all .3s;
+   margin-bottom: 10px;
+   padding: 15px;
+}
+textarea {
+   height: 150px;
+}
+.contact-form {
+   display: inline-block;
+   vertical-align: top;
+   width: 58%;
+}
+
+.contact-about {
+   display: inline-block;
+   vertical-align: top;
+   width: 40%;
+}
+
+.contact-about p {
+   margin: 0 0 24px;
+   line-height: 24px;
+}
+.error-message {
+   color: #F51414;
+   height: 20px;
+}
+.submit{
+   display:flex;
+   align-items: flex-end;
+}
+.submit p{
+   padding:0 0 0 10px;
+   margin:0;
+}
+/* ------------ footer ------------ */
+footer img {
+   width: 125px;
+}
+
+footer p {
+   color: #b3aeb5;
+   font-size: 0.9em;
+   font-family: 'Caveat', cursive;
+   font-family: 'Dancing Script', cursive;
+}
+
+footer {
+   padding-top: 30px;
+   padding-bottom: 20px;
+}

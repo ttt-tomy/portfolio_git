@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+   <meta name="Description" content="" />
+   <meta name="Keywords"  content="" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Tomy Portfolio</title>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+   <link rel="stylesheet" href="stylesheet.css">
+   <link rel="stylesheet" href="responsive.css">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Kaisei+Tokumin&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+   <!--ハンバーガーメニューここから-->
+   <div class="hamburger-bg"></div>
+      <div class="hamburger">
+         <span></span>
+         <span></span>
+         <span></span>
+      </div>
+      <nav class="globalMenuSp">
+         <ul>
+            <li><a href="./">HOME</a></li>
+            <li><a href="./20210703/index.html" target="_blank" rel="noopener noreferrer">業務ツール</a></li>
+            <li><a href="./product.html">制作物一覧</a></li>
+            <li><a href="#" class="signup-show">新規登録</a></li>
+            <li><a class="login login-show">ログイン</a></li>
+         </ul>
+      </nav>
+   <!--ハンバーガーメニューここまで-->
+   <!--ヘッダーメニューここから-->
+<header>
+   <div class="fst-view-container">
+      <div class="header-left" id="top-btn" >
+         <img class="logo" ontouchstart="" src="./img/logo.png">
+      </div>
+      <div class="header-right">
+         <a href="./">HOME</a>
+         <a href="./20210703/index.html" target="_blank" rel="noopener noreferrer">業務ツール</a>
+         <a href="./product.html">制作物一覧</a>
+         <a href="#" class="signup-show">新規登録</a>
+         <a href="#" class="login login-show">ログイン</a>
+      </div>
+   </div>
+</header>
+<!--ヘッダーメニューここまで-->
+<!--モーダルここから-->
+      <div class="overlay"></div>
+      <div class="modal" id="signup-modal">
+         <div id="close-modal">
+            <i class="fa fa-2x fa-times"></i>
+         </div>
+         <div id="signup-form">
+            <h2>Emailで新規登録</h2>
+            <form action="#">
+               <input class="form-control" type="text" placeholder="メールアドレス">
+               <input class="form-control" type="password" placeholder="パスワード">
+               <div id="submit-btn">新規登録</div>
+            </form>
+         </div>
+      </div>
+   <div class="login-modal-wrapper">
+      <div class="modal" id="login-modal">
+         <div class="close-modal">
+            <i class="fa fa-2x fa-times"></i>
+         </div>
+         <div id="login-form">
+            <h2>Emailログイン</h2>
+            <form action="#">
+            <input class="form-control" type="text" placeholder="メールアドレス">
+            <input class="form-control" type="password" placeholder="パスワード">
+            <div id="submit-btn">ログイン</div>
+            </form>
+         </div>
+      </div>
+   </div>
+<!--モーダルここまで-->
+   <div class="top-wrapper">
+      <div class="fst-view-container">
+         <h1>CREATE THE FUTHUTER.</h1>
+         <h1>CREATE THE LIFESTYLES.</h1>
+         <p>新しい生活と新しい社会へ貢献します。</p>
+         <p>過去から学び未来へ挑戦しつづけ、実行力と実現性を切り開きます。</p>
+         <div class="btn-wrapper">
+            <a href="#" class="btn signup signup-show">新規登録はこちら</a>
+            <p>or</p>
+            <a href="#" class="btn facebook"><span class="fa fa-facebook"></span>Facebookで登録</a>
+            <a href="#" class="btn twitter"><span class="fa fa-twitter"></span>Twitterで登録</a>
+         </div>
+      </div>
+   </div>
+   <div class="slide-wrapper">
+      <div class="container">
+         <h2 class="content-title">賞状</h2>
+         <div class="change-btn-wrapper">
+            <div class="change-btn prev-btn">← 前へ</div>
+            <div class="change-btn next-btn">次へ →</div>
+         </div>
+         <ul class="slides">
+            <li class="slide active"><img src="./img/coming_soon1.jpg"></li>
+            <li class="slide"><img src="./img/coming_soon2.jpg"></li>
+            <li class="slide"><img src="./img/coming_soon3.jpg"></li>
+            <li class="slide"><img src="./img/coming_soon4.jpg"></li>
+         </ul>
+         <div class="index-btn-wrapper">
+            <div class="index-btn">1</div>
+            <div class="index-btn">2</div>
+            <div class="index-btn">3</div>
+            <div class="index-btn">4</div>  
+         </div>
+      </div>
+   </div>
+   <div class="skill-wrapper">
+      <div class="container">
+      <h2 class="content-title">Skills Infomasion.</h2>
+      <div class="skills">
+         <div class="skill">
+            <div class="skill-icon">
+            <iframe src="https://ttt-tomy.com/fluid/fluid.html" seamless="" width="200" height="200" frameborder="0"></iframe>
+            <p>Javascript</p>
+            </div>
+            <p class="text-contents">柔軟な条件設定によりユーザー動向との連携を行い円滑誘導と業務の軽減を行います。また、jQueryライブラリを利用することで動きのあるコンテンツ制作し、操作性の向上につなげます。</p>
+         </div>
+         <div class="skill">
+            <div class="skill-icon">
+            <iframe src="https://ttt-tomy.com/fluid/fluid.html" seamless="" width="200" height="200" frameborder="0"></iframe>
+            <p>Linux</p>
+            </div>
+            <p class="text-contents">サーバーを構築し開発環境を整えることで、柔軟なサービス提供が可能になります。言語の横展開を可能にし幅広い技術利用を可能にします。</p>
+         </div>
+         <div class="skill">
+            <div class="skill-icon">
+            <iframe src="https://ttt-tomy.com/fluid/fluid.html" seamless="" width="200" height="200" frameborder="0"></iframe>
+            <p>PHP</p>
+            </div>
+            <p class="text-contents">長期的なサービス提供を行うためメンテナンス性が必要になります。データベースを利用し煩雑になりがちなコーディングを整理し時代に合わせた柔軟な対応を可能にします。</p>
+         </div>
+         <div class="skill">
+            <div class="skill-icon">
+            <iframe src="https://ttt-tomy.com/fluid/fluid.html" seamless="" width="200" height="200" frameborder="0"></iframe>
+            <p>HTML & CSS</p>
+            </div>
+            <p class="text-contents">目で見るものに見た目は重要です。色や配置だけで作業ミスを低減することも可能です。また、端末を制限しないレスポンシブ対応も可能にします。</p>
+         </div>
+         <div class="clear">
+         </div>
+      </div>
+      </div>
+   </div>
+   <div class="qa-wrapper">
+      <div class="container">
+         <h2 class="content-title">Q＆A</h2>
+         <div class="qa">
+            <ul id="qa-list">
+            <li class="qa-list-item">
+               <h3 class="question">出身はどこですか？</h3>
+               <span>回答を見る</span>
+               <div class="answer">
+                  <p>東京都墨田区の出身です。下町生まれ下町育ちです。</p>
+               </div>
+            </li>
+            <li class="qa-list-item">
+               <h3 class="question">学生の頃の部活動を教えてください。</h3>
+               <span>回答を見る</span>
+               <div class="answer">
+                  <p>バスケットボール部でした。ポジションはパワーフォワードでした。</p>
+               </div>
+            </li>
+            <li class="qa-list-item">
+               <h3 class="question">子供の頃に流行っていたモノは<br class="sp-only">なんですか？</h3>
+               <span>回答を見る</span>
+               <div class="answer">
+                  <p>駄菓子屋でのミニ四駆と、児童館でのSケンが流行っていました。</p>
+               </div>
+            </li>
+            </ul>
+         </div>
+      </div>
+   </div>
+   <div class="form-wrapper">
+      <div class="container">
+         <div class="section-title">
+            <h3 class="pctb-only">サイトへのご意見をお聞かせください</h3>
+            <h3 class="sp-only">サイトへのご意見</h3>
+         </div>
+         <div class="section-content">
+            <p class="call-to-action">投稿したい内容をクリック！</p>
+            <div class="option-wrapper">
+               <div class="option-group">
+                  <img class="option-image" src="./img/mitame.png">
+                  <div class="option-btn" ontouchstart="" data-option="見た目について">見た目</div>
+               </div>
+               <div class="option-group">
+                  <img class="option-image" src="./img/dousen.png">
+                  <div class="option-btn" ontouchstart="" data-option="動線について">動線</div>
+               </div>
+               <div class="option-group">
+                  <img class="option-image" src="./img/naiyou.png">
+                  <div class="option-btn" ontouchstart="" data-option="内容について">内容</div>
+               </div>
+            </div>
+            <form id="form" class="form">
+               <div class="form-group">
+                  <div>意見項目：</div>
+                  <select id="select-form" class="select-form">
+                     <option value hidden>選択してください</option>
+                     <option value="見た目について">見た目について</option>
+                     <option value="動線について">動線について</option>
+                     <option value="内容について">内容について</option>
+                     <option value="その他">その他</option>
+                  </select>  
+               </div>
+               <div class="form-group">
+                  <p id="error-message" class="error-message"></p>
+                  <div>内容：</div>
+                  <textarea id="text-form" class="text-form"></textarea>  
+               </div>
+               <div class="submit">
+                  <button type="submit" class="btn btn-submit">送信</button>
+                  <p>※実際には送信できません。</p>
+               </div>
+            </form>
+            <div class="output-wrapper">
+               <h4>送信結果</h4>
+               <div class="output-inner">
+                  <p class="output-item">意見項目：<span id="output-select"></span></p>
+                  <p class="output-item">内容：<span id="output-text"></span></p>  
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div id="contact" class="contact-section gray-section">
+      <div class="contact-section-inner">
+         <div class="container">
+            <div class="section-title">
+               <h3>お問い合わせ</h3>
+            </div>
+            <div class="contact-form">
+               <h4>メッセージを送る</h4>
+               <form action="./contact_form/contact/contact_form_execution.php" method="post">
+                  <input type="text" name="name" required placeholder="お名前" class="contact-name" value="">
+                  <input type="email" name="email" required placeholder="メールアドレス" class="contact-email" value="">
+                  <textarea name="body" required placeholder="メッセージ内容"></textarea>
+                  <div class="submit">
+                     <button name="submitted" type="submit" class="btn btn-submit">送信</button>
+                     <p>※ここは送信可能です。</p>
+                  </div>
+               </form>
+            </div>
+            <div class="contact-about">
+               <h4>About Me</h4>
+               <p>留学経験からスムーズな言語習得を実現。<br>
+                  Web業界に従事しIT知識と新たな言語を習得。<br>
+                  8000以上の企業と対話し抱える問題点に直面。<br>
+                  提供するサービスと内部業務とのシステムマッチについて課題意識を持つ。<br>
+                  ・2004年：学業成績により表彰<br>
+                  ・2011年：海外現地学校卒業<br>
+                  ・2017年：業務への取り組みにより表彰<br>
+                  ・2021年：ITマネジメント資格取得<br>
+                  ・2021年：Linux資格取得<br>
+               </p>
+            </div>
+         </div>
+      </div>
+   </div>
+   <footer>
+      <div class="fst-view-container">
+      <img class="logo" src="./img/logo2.png">
+      <p>Create the futhuter. Create the lifestyles.</p>
+      </div>
+   </footer>
+<script type="text/javascript" src="script.js"></script>
+</body>
+</html>

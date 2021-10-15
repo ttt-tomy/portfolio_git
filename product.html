@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+   <meta name="Description" content="" />
+   <meta name="Keywords"  content="" />
+   <title>Tomy Portfolio</title>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+   <link rel="stylesheet" href="stylesheet.css">
+   <link rel="stylesheet" href="responsive.css">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Kaisei+Tokumin&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+   <!--ハンバーガーメニューここから-->
+   <div class="hamburger-bg"></div>
+      <div class="hamburger">
+         <span></span>
+         <span></span>
+         <span></span>
+      </div>
+      <nav class="globalMenuSp">
+         <ul>
+            <li><a href="./">HOME</a></li>
+            <li><a href="./20210703/index.html" target="_blank" rel="noopener noreferrer">業務ツール</a></li>
+            <li><a href="./product.html">制作物一覧</a></li>
+            <li><a href="#" class="signup-show">新規登録</a></li>
+            <li><a class="login login-show">ログイン</a></li>
+         </ul>
+      </nav>
+   <!--ハンバーガーメニューここまで-->
+   <!--ヘッダーメニューここから-->
+<header>
+   <div class="fst-view-container">
+      <div class="header-left" id="top-btn" >
+         <img class="logo" ontouchstart="" src="./img/logo.png">
+      </div>
+      <div class="header-right">
+         <a href="./">HOME</a>
+         <a href="./20210703/index.html" target="_blank" rel="noopener noreferrer">業務ツール</a>
+         <a href="./product.html">制作物一覧</a>
+         <a href="#" class="signup-show">新規登録</a>
+         <a href="#" class="login login-show">ログイン</a>
+      </div>
+   </div>
+</header>
+<!--ヘッダーメニューここまで-->
+<!--モーダルここから-->
+      <div class="overlay"></div>
+      <div class="modal" id="signup-modal">
+         <div id="close-modal">
+            <i class="fa fa-2x fa-times"></i>
+         </div>
+         <div id="signup-form">
+            <h2>Emailで新規登録</h2>
+            <form action="#">
+               <input class="form-control" type="text" placeholder="メールアドレス">
+               <input class="form-control" type="password" placeholder="パスワード">
+               <div id="submit-btn">新規登録</div>
+            </form>
+         </div>
+      </div>
+   <div class="login-modal-wrapper">
+      <div class="modal" id="login-modal">
+         <div class="close-modal">
+            <i class="fa fa-2x fa-times"></i>
+         </div>
+         <div id="login-form">
+            <h2>Emailログイン</h2>
+            <form action="#">
+            <input class="form-control" type="text" placeholder="メールアドレス">
+            <input class="form-control" type="password" placeholder="パスワード">
+            <div id="submit-btn">ログイン</div>
+            </form>
+         </div>
+      </div>
+   </div>
+<!--モーダルここまで-->
+   <div class="content-position-fix"></div>
+   <div class="skill-wrapper">
+      <div class="container">
+         <h2 class="content-title">制作物一覧</h2>
+         <ul style="padding: 0;">
+            <li>
+               <p><a href="./c3test.html">ポップアップ分岐テスト</a>(JavaScript)</p>
+               <p><a href="./rand.php">サイコロ</a>(PHP)</p>
+            </li>
+            <li>
+               <p><a href="./c3-2test.html">0~xまで足し算</a>(JavaScript)</p>
+            </li>
+            <li>
+               <p><a href="./hairetu_test.html">配列テスト</a>(JavaScript)</p>
+               <p><a href="./dateobject_test.html">Dateオブジェクトテスト</a>(JavaScript)</p>
+               <p><a href="./kansusakusei_test.html">関数作成テスト</a>(JavaScript)</p>
+            </li>
+            <li>
+               <p><a href="./kansusakusei_test.html">この日の曜日を知りたい</a>(関数作成テストページを改変,JavaScript)</p>
+            </li>
+            <li>
+               <p><a href="./if1.php">今は午前午後？</a>(ifテスト,PHP)</p>
+               <p><a href="./if4.php">時間により背景が変わるページの実験</a>(PHP)</p>
+            </li>
+            <li>
+               <p><a href="./if11.php">5回負けなければクリアできるジャンケン</a>(elseとelseif混合テスト,PHP)</p>
+            </li>
+            <li>
+               <p><a href="./hyouzyun_func.php">BMI標準体重の自動計算(175cm)</a>(PHP)</p>
+               <p><a href="./mplayer.html">Webミュージックプレイヤー</a>(JavaScript)</p>
+            </li>
+            <li>
+               <p><a href="./jusyo_input.html">住所から都道府県名を抜き出す</a>(PHP)</p>
+            </li>
+            <li>
+               <p><a href="./20210206/index.html">jQueryテスト</a>(JavaScript/jQuery)</p>
+            </li>
+            <li>
+               <p><a href="./20210216/index.html">HTMLテストページ</a>(JavaScript/jQuery)</p>
+            </li>
+            <li>
+               <p><a href="./20210218/index.html">プルダウンから計算</a>(JavaScript/jQuery)</p>
+            </li>
+            <li>
+               <p><a href="./20210219/index.html">干支を調べる</a>(JavaScript/jQuery)</p>
+            </li>
+            <li>
+               <p><a href="./20210310/index.html">JavaScriptのクラスについて纏め(コンソールのみ)</a>(JavaScript)</p>
+            </li>
+            <li>
+               <p><a href="./20210311/index.html">jQuery動きのサンプルページ</a>(JavaScript/jQuery)</p>
+            </li>
+            <li>
+               <p><a href="./button/index.html">ボタンの種類（jQueryで使う用）</a>(CSS)</p>
+            </li>
+            <li>
+               <p><a href="./20210312_2/index.html">コースによって表が変わるヤツ</a>(jQuery)</p>
+            </li>
+            <li>
+               <p><a href="./accordion/index.html">アコーディオンQ&A(別の開けば他の開きっぱは自動で閉じるVer)</a>(jQuery)</p>
+            </li>
+            <li>
+               <p><a href="./color/index.html">カラーセット収集</a></p>
+            </li>
+            <li>
+               <p><a href="./20211005/">ゆらゆら揺れるバナー(CSS)</a></p>
+            </li>
+         </ul>
+      </div>
+   </div>
+   <div id="contact" class="contact-section gray-section">
+      <div class="contact-section-inner">
+         <div class="container">
+            <div class="section-title">
+               <h3>お問い合わせ</h3>
+            </div>
+            <div class="contact-form">
+               <h4>メッセージを送る</h4>
+               <form>
+                  <div class="error-message"></div>
+                  <input type="text" name="name" placeholder="お名前" class="contact-name">
+                  <div class="error-message"></div>
+                  <input type="text" name="email" placeholder="メールアドレス" class="contact-email">
+                  <div class="error-message"></div>
+                  <textarea name="message" placeholder="メッセージ内容"></textarea>
+                  <div class="submit">
+                     <button type="submit" class="btn btn-submit">送信</button>
+                     <p>※実際には送信できません。</p>
+                  </div>
+               </form>
+            </div>
+            <div class="contact-about">
+               <h4>About Me</h4>
+               <p>留学経験からスムーズな言語習得を実現。<br>
+                  Web業界に従事しIT知識と新たな言語を習得。<br>
+                  8000以上の企業と対話し抱える問題点に直面。<br>
+                  提供するサービスと内部業務とのシステムマッチについて課題意識を持つ。<br>
+                  ・2004年：学業成績により表彰<br>
+                  ・2011年：海外現地学校卒業<br>
+                  ・2017年：業務への取り組みにより表彰<br>
+                  ・2021年：ITマネジメント資格取得<br>
+                  ・2021年：Linux資格取得<br>
+               </p>
+            </div>
+         </div>
+      </div>
+   </div>
+   <footer>
+      <div class="fst-view-container">
+      <img class="logo" src="./img/logo2.png">
+      <p>Create the futhuter. Create the lifestyles.</p>
+      </div>
+   </footer>
+<script type="text/javascript" src="script.js"></script>
+</body>
+</html>
