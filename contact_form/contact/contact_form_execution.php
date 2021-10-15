@@ -55,7 +55,7 @@ if (isset($_POST['submitted'])) {
       $params = '?result='. $result;
       //サーバー変数 $_SERVER['HTTPS'] が取得出来ない環境用
       if(isset($_SERVER['HTTP_X_FORWARDED_PROTO']) and $_SERVER['HTTP_X_FORWARDED_PROTO'] === "https"){
-         $_SERVER['HTTPS'] = 'on';
+      $_SERVER['HTTPS'] = 'on';
       }
       $url = (empty($_SERVER['HTTPS']) ? 'http://' : 'https://').$_SERVER['HTTP_HOST'].$_SERVER['SCRIPT_NAME']; 
       header('Location:' . $url . $params);
@@ -97,13 +97,19 @@ function FILTER(){
    <title>コンタクトフォーム</title>
 </head>
 <body>
+   <!-- 発火用のPHPファイルが別の場合 -->
+   <!-- <form action="ファイル.php" method="post"> -->
    <?php  if ( isset($_GET['result']) && $_GET['result'] ) : // 送信が成功した場合?>
       <p>送信完了しました。</p>
       <p>お問い合わせありがとうございます。</p>
-      <hr>
    <?php elseif (isset($result) && !$result ): // 送信が失敗した場合 ?>
-      <p>送信に失敗しました。</p>
+      <h4>送信に失敗しました。</h4>
       <p>別のブラウザでお試しいただくか、しばらく経ってから再度お試しください。</p>
+   <?php endif; ?>
+   <?php  if (ini_get('safe_mode')) : ?>
+      <p>※セーフモードが有効です。迷惑メールへ振り分けられる可能性があります。</p>
+      <hr>
+   <?php else : //  ?>
       <hr>
    <?php endif; ?>
 </body>
