@@ -97,13 +97,11 @@ function FILTER(){
    <title>コンタクトフォーム</title>
 </head>
 <body>
-   <!-- 発火用のPHPファイルが別の場合 -->
-   <!-- <form action="ファイル.php" method="post"> -->
    <?php  if ( isset($_GET['result']) && $_GET['result'] ) : // 送信が成功した場合?>
       <p>送信完了しました。</p>
       <p>お問い合わせありがとうございます。</p>
    <?php elseif (isset($result) && !$result ): // 送信が失敗した場合 ?>
-      <h4>送信に失敗しました。</h4>
+      <p>送信に失敗しました。</p>
       <p>別のブラウザでお試しいただくか、しばらく経ってから再度お試しください。</p>
    <?php endif; ?>
    <?php  if (ini_get('safe_mode')) : ?>
