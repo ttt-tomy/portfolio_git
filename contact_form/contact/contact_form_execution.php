@@ -1,7 +1,7 @@
 <?php
 
 //関数定義ファイルを読み込み
-require '../libs/functions2.php';
+require '../libs/functions.php';
 
 //入力内容を格納、なければ NULL（変数の初期化）
 $name = isset( $_POST[ 'name' ] ) ? $_POST[ 'name' ] : NULL;
@@ -14,7 +14,7 @@ if (isset($_POST['submitted'])) {
    FILTER();
    if ($_SERVER['REQUEST_METHOD']==='POST'){//_POSTのリクエストか判定
       //$mailToを記述したファイルの読み込み
-      require '../libs/mailvars2.php';
+      require '../libs/mailvars.php';
       //回収アドレスの代入
       $mailTo = mb_encode_mimeheader(MAIL_TO_NAME) ."<" . MAIL_TO. ">";
       //Return-Pathに指定するメールアドレス
