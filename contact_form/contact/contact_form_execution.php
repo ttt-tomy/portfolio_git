@@ -40,6 +40,26 @@ if (isset($_POST['submitted'])) {
          }
             //メールが送信された場合の処理
          if ( $result ) {
+            //自動返信
+            date_default_timezone_set('Asia/Tokyo'); 
+            $ar_header = "MIME-Version: 1.0\n";
+            $ar_header .= "From: " . mb_encode_mimeheader( AUTO_REPLY_NAME ) . " <" . AUTO_REPLY . ">\n";
+            $ar_header .= "Reply-To: " . mb_encode_mimeheader( AUTO_REPLY_NAME ) . " <" . AUTO_REPLY . ">\n";
+            $ar_subject = 'お問い合わせありがとうございます(自動返信)';//件名
+            $ar_body = $name." 様\n\n";//本文ここから
+            $ar_body .= "この度は、お問い合わせいただき誠にありがとうございます。" . "\n";
+            $ar_body .= "下記の内容で受け付けました。\n\n";
+            $ar_body .= "お問い合わせ日時：" . date("Y-m-d H:i") . "\n";
+            $ar_body .= "お名前：" . $name . "\n";
+            $ar_body .= "メールアドレス：" . $email . "\n";
+            //$ar_body .= "お電話番号： " . $tel . "\n\n" ;
+            $ar_body .="＜お問い合わせ内容＞" . "\n" . $body . "\n\n" ;
+            $ar_body .="※※ご注意※※" . "\n" . "本メールは自動返信です。\nご返信いただくことができません。" ;//本文ここまで
+            if ( ini_get( 'safe_mode' ) ) {
+               $result2 = mb_send_mail( $email, $ar_subject , $ar_body , $ar_header  );
+            } else {
+               $result2 = mb_send_mail( $email, $ar_subject , $ar_body , $ar_header , '-f' . $returnMail );
+            }
             //空の配列を代入し、すべてのPOST変数を消去
             $_POST = array();
             //変数の値も初期化
@@ -103,16 +123,17 @@ function FILTER(){
 </head>
 <body>
    <?php  if ( isset($_GET['result']) && $_GET['result'] ) : // 送信が成功した場合?>
-      <p>送信完了しました。</p>
-      <p>お問い合わせありがとうございます。</p>
+      <p>お問い合わせありがとうございます。<br>送信完了しました。</p>
    <?php elseif (isset($result) && !$result ): // 送信が失敗した場合 ?>
-      <p>送信に失敗しました。</p>
-      <p>別のブラウザでお試しいただくか、しばらく経ってから再度お試しください。</p>
+      <p>送信に失敗しました。<br>送信完了しました。別のブラウザでお試しいただくか、しばらく経ってから再度お試しください。</p>
+   <?php elseif (isset($result2) && !$result2 ): // 自動返信が失敗した場合 ?>
+      <p>自動送信に失敗しました。</p>
    <?php endif; ?>
    <?php  if (ini_get('safe_mode')) : ?>
       <p>※セーフモードが有効です。迷惑メールへ振り分けられる可能性があります。</p>
       <hr>
-   <?php else : //  ?>
+   <?php else: ?>
+      <p>迷惑メールフィルタについて<br>ご利用環境により自動返信が迷惑メールへ振り分けられることがありますのでご注意ください。</p>
       <hr>
    <?php endif; ?>
 </body>
