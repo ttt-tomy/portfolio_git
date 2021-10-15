@@ -17,7 +17,7 @@ if (isset($_POST['submitted'])) {
       require '../libs/mailvars.php';
       //なりすまし防止
       if($email != MAIL_TO && $email != MAIL_RETURN_PATH){
-         //回収アドレスの代入
+         //回収メールアドレスの代入
          $mailTo = mb_encode_mimeheader(MAIL_TO_NAME) ."<" . MAIL_TO. ">";
          //Return-Pathに指定するメールアドレス
          $returnMail = MAIL_RETURN_PATH; 
@@ -30,7 +30,7 @@ if (isset($_POST['submitted'])) {
          $mail_body .=  "Email： " . h($email) . "\n"  ;
          $mail_body .=  "＜お問い合わせ内容＞" . "\n" . h($body);
          // 送信者情報（From ヘッダー）の設定
-         $header = "From: " . mb_encode_mimeheader($name) ."<" . $email. ">\n";
+         $header = "From: " . mb_encode_mimeheader( AUTO_REPLY_NAME ) . " <" . AUTO_REPLY . ">\n";
          //メール送信
          if(ini_get('safe_mode')){
             //セーフモードがOnの場合は第5引数が使えない
