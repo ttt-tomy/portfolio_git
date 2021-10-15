@@ -15,52 +15,57 @@ if (isset($_POST['submitted'])) {
    if ($_SERVER['REQUEST_METHOD']==='POST'){//_POSTのリクエストか判定
       //$mailToを記述したファイルの読み込み
       require '../libs/mailvars.php';
-      //回収アドレスの代入
-      $mailTo = mb_encode_mimeheader(MAIL_TO_NAME) ."<" . MAIL_TO. ">";
-      //Return-Pathに指定するメールアドレス
-      $returnMail = MAIL_RETURN_PATH; 
-      //日本語設定
-      mb_language("japanese");
-      mb_internal_encoding("UTF-8");
-      //格納内容の本文構成。値は h() でエスケープ処理
-      $mail_body = 'ホームページからのお問い合わせ' . "\n\n";
-      $mail_body .=  "お名前： " .h($name) . "\n";
-      $mail_body .=  "Email： " . h($email) . "\n"  ;
-      $mail_body .=  "＜お問い合わせ内容＞" . "\n" . h($body);
-      // 送信者情報（From ヘッダー）の設定
-      $header = "From: " . mb_encode_mimeheader($name) ."<" . $email. ">\n";
-      //メール送信
-      if(ini_get('safe_mode')){
-         //セーフモードがOnの場合は第5引数が使えない
-         $result = mb_send_mail($mailTo,"ホームページからのお問い合わせ",$mail_body,$header);
-         print "お客様の環境がセーフモードのため、迷惑メールに振り分けられる可能性があります。";
+      //なりすまし防止
+      if($email != MAIL_TO && $email != MAIL_RETURN_PATH){
+         //回収アドレスの代入
+         $mailTo = mb_encode_mimeheader(MAIL_TO_NAME) ."<" . MAIL_TO. ">";
+         //Return-Pathに指定するメールアドレス
+         $returnMail = MAIL_RETURN_PATH; 
+         //日本語設定
+         mb_language("japanese");
+         mb_internal_encoding("UTF-8");
+         //格納内容の本文構成。値は h() でエスケープ処理
+         $mail_body = 'ホームページからのお問い合わせ' . "\n\n";
+         $mail_body .=  "お名前： " .h($name) . "\n";
+         $mail_body .=  "Email： " . h($email) . "\n"  ;
+         $mail_body .=  "＜お問い合わせ内容＞" . "\n" . h($body);
+         // 送信者情報（From ヘッダー）の設定
+         $header = "From: " . mb_encode_mimeheader($name) ."<" . $email. ">\n";
+         //メール送信
+         if(ini_get('safe_mode')){
+            //セーフモードがOnの場合は第5引数が使えない
+            $result = mb_send_mail($mailTo,"ホームページからのお問い合わせ",$mail_body,$header);
+         }else{
+            $result = mb_send_mail($mailTo,"ホームページからのお問い合わせ",$mail_body,$header,'-f' . $returnMail);
+         }
+            //メールが送信された場合の処理
+         if ( $result ) {
+            //空の配列を代入し、すべてのPOST変数を消去
+            $_POST = array();
+            //変数の値も初期化
+            $name = '';
+            $email = '';
+            $tel = '';
+            $subject = '';
+            $body = '';
+            //再読み込みによる二重送信の防止
+            $params = '?result='. $result;
+            //サーバー変数 $_SERVER['HTTPS'] が取得出来ない環境用
+            if(isset($_SERVER['HTTP_X_FORWARDED_PROTO']) and $_SERVER['HTTP_X_FORWARDED_PROTO'] === "https"){
+            $_SERVER['HTTPS'] = 'on';
+            }
+            $url = (empty($_SERVER['HTTPS']) ? 'http://' : 'https://').$_SERVER['HTTP_HOST'].$_SERVER['SCRIPT_NAME']; 
+            header('Location:' . $url . $params);
+            exit;
+         }else{
+            print "send_mailエラー";
+         }
       }else{
-         $result = mb_send_mail($mailTo,"ホームページからのお問い合わせ",$mail_body,$header,'-f' . $returnMail);
+         print "メールアドレスが不正です。";
       }
    }else{
       print "_POSTでのリクエストではありません。";
    }
-
-   //メールが送信された場合の処理
-   if ( $result ) {
-      //空の配列を代入し、すべてのPOST変数を消去
-      $_POST = array();
-      //変数の値も初期化
-      $name = '';
-      $email = '';
-      $tel = '';
-      $subject = '';
-      $body = '';
-      //再読み込みによる二重送信の防止
-      $params = '?result='. $result;
-      //サーバー変数 $_SERVER['HTTPS'] が取得出来ない環境用
-      if(isset($_SERVER['HTTP_X_FORWARDED_PROTO']) and $_SERVER['HTTP_X_FORWARDED_PROTO'] === "https"){
-      $_SERVER['HTTPS'] = 'on';
-      }
-      $url = (empty($_SERVER['HTTPS']) ? 'http://' : 'https://').$_SERVER['HTTP_HOST'].$_SERVER['SCRIPT_NAME']; 
-      header('Location:' . $url . $params);
-      exit;
-   } 
 }
 
 
