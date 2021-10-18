@@ -157,16 +157,13 @@
             </div>
             <div class="contact-form">
                <h4>メッセージを送る</h4>
-               <form>
-                  <div class="error-message"></div>
-                  <input type="text" name="name" placeholder="お名前" class="contact-name">
-                  <div class="error-message"></div>
-                  <input type="text" name="email" placeholder="メールアドレス" class="contact-email">
-                  <div class="error-message"></div>
-                  <textarea name="message" placeholder="メッセージ内容"></textarea>
+               <form action="./contact_form/contact/contact_form_execution.php" method="post">
+                  <input type="text" name="name" required placeholder="お名前" class="contact-name" value="">
+                  <input type="email" name="email" required placeholder="メールアドレス" class="contact-email" value="">
+                  <textarea name="body" required placeholder="メッセージ内容"></textarea>
                   <div class="submit">
-                     <button type="submit" class="btn btn-submit">送信</button>
-                     <p>※実際には送信できません。</p>
+                     <button name="submitted" type="submit" class="btn btn-submit">送信</button>
+                     <p>※ここは送信可能です。</p>
                   </div>
                </form>
             </div>
