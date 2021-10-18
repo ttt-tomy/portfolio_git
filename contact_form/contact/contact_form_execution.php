@@ -12,7 +12,7 @@ $body = isset( $_POST[ 'body' ] ) ? $_POST[ 'body' ] : NULL;
 //送信ボタンで発火
 if (isset($_POST['submitted'])) {
    FILTER();
-   if ($_SERVER['REQUEST_METHOD']==='POST'){//_POSTのリクエストか判定
+   if (empty($error) && $_SERVER['REQUEST_METHOD']==='POST'){//エラーがなく且つ POST でのリクエストか判定
       //$mailToを記述したファイルの読み込み
       require '../libs/mailvars.php';
       //なりすまし防止
@@ -54,7 +54,7 @@ if (isset($_POST['submitted'])) {
             $ar_body .= "メールアドレス：" . $email . "\n";
             //$ar_body .= "お電話番号： " . $tel . "\n\n" ;
             $ar_body .="＜お問い合わせ内容＞" . "\n" . $body . "\n\n" ;
-            $ar_body .="※※ご注意※※" . "\n" . "本メールは自動返信です。\nご返信いただくことができません。" ;//本文ここまで
+            $ar_body .="※※ご注意※※" . "\n" . "このメールは送信専用のメールアドレスから配信されています。\nこのメールへの返信はできませんのでご了承ください。" ;//本文ここまで
             if ( ini_get( 'safe_mode' ) ) {
                $result2 = mb_send_mail( $email, $ar_subject , $ar_body , $ar_header  );
             } else {
@@ -84,15 +84,24 @@ if (isset($_POST['submitted'])) {
          print "メールアドレスが不正です。";
       }
    }else{
-      print "_POSTでのリクエストではありません。";
+      print "入力内容のエラーです。" .'<br>';
+      if(isset($error['name']))echo h($error['name']) .'<br>';
+      if(isset($error['email']))echo h($error['email']) .'<br>';
+      if(isset($error['tel']))echo h($error['tel']) .'<br>';
+      if(isset($error['tel_format']))echo h($error['tel_format']) .'<br>';
+      //if(isset( $error['subject']))echo h($error['subject']) .'<br>';
+      if(isset($error['body']))echo h($error['body']) .'<br>';
+      if(empty($error))echo '_POSTリクエストではありません。';
    }
 }
 
 
 //フィルターを定義
 function FILTER(){
-   //POSTされたデータに不正な値がないかを別途定義した checkInput() 関数で検証 
+   //POSTされたデータに不正な値がないかを別途定義した checkInput() 関数で検証
+   global $_POST,$name,$email,$body,$error,$name,$pattern;
    $_POST = checkInput( $_POST );
+   //入力内容を成形
    if(isset($_POST['name'])) {
       //スクリプトタグがあれば除去
       $name = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
@@ -110,7 +119,51 @@ function FILTER(){
       //数値の形式にフィルタ（数字、+ 、- 記号 以外を除去）
       //$tel = filter_var($_POST['tel'], FILTER_SANITIZE_NUMBER_INT);
    //}
+
+   //エラーメッセージを保存する配列の初期化
+   $error = array();
+   //値の検証
+   if ( $name == '' ) {
+      $error['name'] = '・お名前は必須項目です。';
+   //制御文字でないことと文字数をチェック
+   } else if ( preg_match( '/\A[[:^cntrl:]]{1,30}\z/u', $name ) == 0 ) {
+      $error['name'] = '・お名前の入力は30文字以内です。';
+   }
+   if ( $email == '' ) {
+      $error['email'] = '・メールアドレスは必須です。';
+   } else { //メールアドレスを正規表現でチェック
+      $pattern = '/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/uiD';
+      if ( !preg_match( $pattern, $email ) ) {
+         $error['email'] = '・メールアドレスの形式が正しくありません。';
+      }
+   }
+   //if ( $email_check == '' ) {
+   //   $error['email_check'] = '*確認用メールアドレスは必須です。';
+   //} else { //メールアドレスを正規表現でチェック
+   //   if ( $email_check !== $email ) {
+   //      $error['email_check'] = '*メールアドレスが一致しません。';
+   //   }
+   //}
+   //if ( preg_match( '/\A[[:^cntrl:]]{0,30}\z/u', $tel ) == 0 ) {
+   //   $error['tel'] = '*電話番号は30文字以内でお願いします。';
+   //}
+   //if ( $tel != '' && preg_match( '/\A\(?\d{2,5}\)?[-(\.\s]{0,2}\d{1,4}[-)\.\s]{0,2}\d{3,4}\z/u', $tel ) == 0 ) {
+   //   $error['tel_format'] = '*電話番号の形式が正しくありません。';
+   //}
+   //if ( $subject == '' ) {
+   //   $error['subject'] = '*件名は必須項目です。';
+   //   //制御文字でないことと文字数をチェック
+   //} else if ( preg_match( '/\A[[:^cntrl:]]{1,100}\z/u', $subject ) == 0 ) {
+   //$error['subject'] = '*件名は100文字以内でお願いします。';
+   //}
+   if ( $body == '' ) {
+      $error['body'] = '・内容は必須項目です。';
+      //制御文字（タブ、復帰、改行を除く）でないことと文字数をチェック
+   } else if ( preg_match( '/\A[\r\n\t[:^cntrl:]]{1,1050}\z/u', $body ) == 0 ) {
+      $error['body'] = '・内容は1000文字以内でお願いします。';
+   }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -122,19 +175,21 @@ function FILTER(){
    <title>コンタクトフォーム</title>
 </head>
 <body>
-   <?php  if ( isset($_GET['result']) && $_GET['result'] ) : // 送信が成功した場合?>
+   <?php  if (isset($_GET['result']) && $_GET['result'] ) : // 送信が成功した場合?>
       <p>お問い合わせありがとうございます。<br>送信完了しました。</p>
    <?php elseif (isset($result) && !$result ): // 送信が失敗した場合 ?>
       <p>送信に失敗しました。<br>送信完了しました。別のブラウザでお試しいただくか、しばらく経ってから再度お試しください。</p>
    <?php elseif (isset($result2) && !$result2 ): // 自動返信が失敗した場合 ?>
       <p>自動送信に失敗しました。</p>
    <?php endif; ?>
-   <?php  if (ini_get('safe_mode')) : ?>
+   <!--セーフモードごとの表示切り替え-->
+   <?php  if (isset($_GET['result']) && $_GET['result'] && ini_get('safe_mode')) : ?>
       <p>※セーフモードが有効です。迷惑メールへ振り分けられる可能性があります。</p>
       <hr>
-   <?php else: ?>
-      <p>迷惑メールフィルタについて<br>ご利用環境により自動返信が迷惑メールへ振り分けられることがありますのでご注意ください。</p>
+   <?php elseif(isset($_GET['result']) && $_GET['result']): ?>
+      <p>※迷惑メールに振り分けられることがあります。※<br>当方からのメールがご利用の環境により迷惑メールに振り分けられることがありますので、ご注意ください。</p>
       <hr>
    <?php endif; ?>
 </body>
 </html>
+
