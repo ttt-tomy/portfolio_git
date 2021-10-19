@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>1からnまでの和：繰り返し処理テスト｜Tomy Portfolio</title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      //ポップアップの入力値を代入
+      var ans = window.prompt(
+      '1～nまで足し算するよ\nnの値を入力してね\n注）入力値が大きすぎるとパソコンが固まるよ'
+    );
+      //文字列を整数（10進数）のデータ型に変更
+      ans = parseInt(ans);
+
+      var sum = 0;
+      var shiki = 0;
+      for(var i=1; i<=ans; i++){
+        //計算
+        sum = sum + i;
+        //出力用（連結）
+        shiki = shiki + '+' + i;
+        //出力
+        document.write('<p>' + shiki + '=' + sum + '<P>');
+      }
+    </script>
+
+  </body>
+</html>
