@@ -667,3 +667,65 @@ footer {
    padding-top: 30px;
    padding-bottom: 20px;
 }
+/* ------------ loader ------------ */
+.loader-bg{
+   display: none;
+   position: fixed;
+   width:100%;
+   top: 0;
+   right: 0;
+   bottom: 0;
+   left: 0;
+   background-color: rgba(0, 0, 0, 0.6);
+   z-index: 99;
+}
+.loader{
+   -webkit-perspective:700px;
+   perspective: 700px;
+   position: fixed;
+   top: 40%;
+   left: 32%;
+   padding: 20px 0 40px;
+   height: auto;
+   text-align: center;
+   z-index: 100;
+   opacity: 0.7;
+}
+.loader>span{
+   font-size: 10em;
+   font-family: "franklin gothic medium",sans-serif;
+   display: inline-block;
+   animation:flip 2.6s infinite linear;
+   transform-origin:0 70%;
+   transform-style:preserve-3d;
+   -webkit-transform-style:preserve-3d;
+}
+@keyframes flip{
+   35%{
+      transform: rotateX(360deg);
+   }
+   100%{
+      transform: rotatex(360deg);
+   }
+}
+.loader>span:nth-child(even){
+   color:white;
+}
+.loader>span:nth-child(2){
+   animation-delay: 0.3s;
+}
+.loader>span:nth-child(3){
+   animation-delay: 0.6s;
+}
+.loader>span:nth-child(4){
+   animation-delay: 0.9s;
+}
+.loader>span:nth-child(5){
+   animation-delay: 1.2s;
+}
+.loader>span:nth-child(6){
+   animation-delay: 1.5s
+}
+.loader>span:nth-child(7){
+   animation-delay: 1.8s
+}
