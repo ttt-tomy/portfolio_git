@@ -9,7 +9,7 @@ $email = isset( $_POST[ 'email' ] ) ? $_POST[ 'email' ] : NULL;
 $body = isset( $_POST[ 'body' ] ) ? $_POST[ 'body' ] : NULL;
 //$tel = isset( $_POST[ 'tel' ] ) ? $_POST[ 'tel' ] : NULL;
 
-//送信ボタンで発火
+//'submitted'のPOSTリクエストで発火
 if (isset($_POST['submitted'])) {
    FILTER();
    if (empty($error) && $_SERVER['REQUEST_METHOD']==='POST'){//エラーがなく且つ POST でのリクエストか判定
@@ -68,7 +68,7 @@ if (isset($_POST['submitted'])) {
             $tel = '';
             $subject = '';
             $body = '';
-            //再読み込みによる二重送信の防止
+            //ページ再読み込みによる送信の防止
             $params = '?result='. $result;
             //サーバー変数 $_SERVER['HTTPS'] が取得出来ない環境用
             if(isset($_SERVER['HTTP_X_FORWARDED_PROTO']) and $_SERVER['HTTP_X_FORWARDED_PROTO'] === "https"){
