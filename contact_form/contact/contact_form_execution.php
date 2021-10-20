@@ -1,5 +1,5 @@
 <?php
-
+         
 //関数定義ファイルを読み込み
 require '../libs/functions.php';
 
@@ -9,8 +9,37 @@ $email = isset( $_POST[ 'email' ] ) ? $_POST[ 'email' ] : NULL;
 $body = isset( $_POST[ 'body' ] ) ? $_POST[ 'body' ] : NULL;
 //$tel = isset( $_POST[ 'tel' ] ) ? $_POST[ 'tel' ] : NULL;
 
+
+//POST送信を受けて発火
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+   FILTER();
+   if (empty($error) && $_SERVER['REQUEST_METHOD']==='POST'){//エラーがなく且つ POST でのリクエストか判定
+      //$mailToを記述したファイルの読み込み
+      require '../libs/mailvars.php';
+      //なりすまし防止
+      if($email == MAIL_TO || $email == MAIL_RETURN_PATH){
+         $error['email'] = '・メールアドレスが不正です';
+      }
+      if(isset($error['email']))echo h($error['email']) .'<br>';
+   }else{
+      print "入力内容のエラーです。" .'<br>';
+      if(isset($error['name']))echo h($error['name']) .'<br>';
+      if(isset($error['email']))echo h($error['email']) .'<br>';
+      if(isset($error['tel']))echo h($error['tel']) .'<br>';
+      if(isset($error['tel_format']))echo h($error['tel_format']) .'<br>';
+      //if(isset( $error['subject']))echo h($error['subject']) .'<br>';
+      if(isset($error['body']))echo h($error['body']) .'<br>';
+      if(empty($error))echo '_POSTリクエストではありません。';
+   }
+}
+
 //'submitted'のPOSTリクエストで発火
 if (isset($_POST['submitted'])) {
+   //入力内容を格納、なければ NULL（変数の初期化）
+   $name = isset( $_POST[ 'name' ] ) ? $_POST[ 'name' ] : NULL;
+   $email = isset( $_POST[ 'email' ] ) ? $_POST[ 'email' ] : NULL;
+   $body = isset( $_POST[ 'body' ] ) ? $_POST[ 'body' ] : NULL;
+   //$tel = isset( $_POST[ 'tel' ] ) ? $_POST[ 'tel' ] : NULL;
    FILTER();
    if (empty($error) && $_SERVER['REQUEST_METHOD']==='POST'){//エラーがなく且つ POST でのリクエストか判定
       //$mailToを記述したファイルの読み込み
@@ -172,10 +201,10 @@ function FILTER(){
    <meta charset="utf-8">
    <meta name="Description" content="" />
    <meta name="Keywords"  content="" />
-   <title>コンタクトフォーム</title>
+<title>コンタクトフォーム</title>
 </head>
 <body>
-   <?php  if (isset($_GET['result']) && $_GET['result'] ) : // 送信が成功した場合?>
+<?php  if (isset($_GET['result']) && $_GET['result'] ) : // 送信が成功した場合?>
       <p>お問い合わせありがとうございます。<br>送信完了しました。</p>
    <?php elseif (isset($result) && !$result ): // 送信が失敗した場合 ?>
       <p>送信に失敗しました。<br>送信完了しました。別のブラウザでお試しいただくか、しばらく経ってから再度お試しください。</p>
@@ -189,7 +218,24 @@ function FILTER(){
    <?php elseif(isset($_GET['result']) && $_GET['result']): ?>
       <p>※迷惑メールに振り分けられることがあります。※<br>当方からのメールがご利用の環境により迷惑メールに振り分けられることがありますので、ご注意ください。</p>
       <hr>
-   <?php endif; ?>
+<?php endif; ?>
+<?php if (empty($error) && $_SERVER['REQUEST_METHOD']==='POST'): ?>
+<form action="contact_form_execution.php" method="post">
+         <input type="hidden" name="name" value="<?php echo $name; ?>">
+         <input type="hidden" name="email" value="<?php echo $email; ?>">
+         <input type="hidden" name="body" value="<?php echo $body; ?>">
+         <!-- <input type="hidden" name="tel" value="<?php echo $tel; ?>"> -->
+         <h1>メッセージ内容確認</h1>
+         <p>内容に間違えなければ「送信する」をクリックして下さい。</p>
+               <p>お名前：<?php echo $name; ?></p>
+               <p>メールアドレス：<?php echo $email; ?></p>
+               <!-- <p>電話番号：<?php echo $tel; ?></p> -->
+               <p>メッセージ内容：<br><?php echo $body ?></p>
+   <input type="button" value="内容を修正する" onclick="history.back(-1)">
+   <button name="submitted" type="submit">送信する</button>
+</form>
+<?php endif; ?>
+</div>
 </body>
 </html>
 
