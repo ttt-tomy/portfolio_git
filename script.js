@@ -138,11 +138,4 @@ $(function() {
       $('.globalMenuSp').removeClass('active');
       $('.hamburger-bg').fadeIn();
    });
-   //////////// 問い合わせフォーム送信 ////////////
-   //////////// ローダー ////////////
-   $('.contact-form-submit').click(function() {
-      $('.loader-bg').fadeIn();
-      //ジャンプ抑止
-      return false;
-   });
 });
