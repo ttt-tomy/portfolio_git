@@ -34,8 +34,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 //'submitted'のPOSTリクエストで発火
+//コードで編集はできるためセキュリティは再度行う
 if (isset($_POST['submitted'])) {
-   //入力内容を格納、なければ NULL（変数の初期化）
+   $overlay = 1 ;
+   //当ページ上のformのため再度入力内容を格納、なければ NULL（変数の初期化）
    $name = isset( $_POST[ 'name' ] ) ? $_POST[ 'name' ] : NULL;
    $email = isset( $_POST[ 'email' ] ) ? $_POST[ 'email' ] : NULL;
    $body = isset( $_POST[ 'body' ] ) ? $_POST[ 'body' ] : NULL;
@@ -68,7 +70,7 @@ if (isset($_POST['submitted'])) {
             $result = mb_send_mail($mailTo,"ホームページからのお問い合わせ",$mail_body,$header,'-f' . $returnMail);
          }
             //メールが送信された場合の処理
-         if ( $result ) {
+         if ($result) {
             //自動返信
             date_default_timezone_set('Asia/Tokyo'); 
             $ar_header = "MIME-Version: 1.0\n";
@@ -94,8 +96,8 @@ if (isset($_POST['submitted'])) {
             //変数の値も初期化
             $name = '';
             $email = '';
-            $tel = '';
-            $subject = '';
+            //$tel = '';
+            //$subject = '';
             $body = '';
             //ページ再読み込みによる送信の防止
             $params = '?result='. $result;
@@ -116,8 +118,8 @@ if (isset($_POST['submitted'])) {
       print "入力内容のエラーです。" .'<br>';
       if(isset($error['name']))echo h($error['name']) .'<br>';
       if(isset($error['email']))echo h($error['email']) .'<br>';
-      if(isset($error['tel']))echo h($error['tel']) .'<br>';
-      if(isset($error['tel_format']))echo h($error['tel_format']) .'<br>';
+      //if(isset($error['tel']))echo h($error['tel']) .'<br>';
+      //if(isset($error['tel_format']))echo h($error['tel_format']) .'<br>';
       //if(isset( $error['subject']))echo h($error['subject']) .'<br>';
       if(isset($error['body']))echo h($error['body']) .'<br>';
       if(empty($error))echo '_POSTリクエストではありません。';
