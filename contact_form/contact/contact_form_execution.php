@@ -203,9 +203,17 @@ function FILTER(){
    <meta charset="utf-8">
    <meta name="Description" content="" />
    <meta name="Keywords"  content="" />
+   <link rel="stylesheet" href="stylesheet.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <title>コンタクトフォーム</title>
 </head>
 <body>
+<div class="hiden">
+   <div class="loader-wrap">
+      <div class="loader">
+      </div>
+   </div>
+</div>
 <?php  if (isset($_GET['result']) && $_GET['result'] ) : // 送信が成功した場合?>
       <p>お問い合わせありがとうございます。<br>送信完了しました。</p>
    <?php elseif (isset($result) && !$result ): // 送信が失敗した場合 ?>
@@ -234,10 +242,11 @@ function FILTER(){
                <!-- <p>電話番号：<?php echo $tel; ?></p> -->
                <p>メッセージ内容：<br><?php echo $body ?></p>
    <input type="button" value="内容を修正する" onclick="history.back(-1)">
-   <button name="submitted" type="submit">送信する</button>
+   <button name="submitted" type="submit" class="btn">送信する</button>
 </form>
 <?php endif; ?>
 </div>
+<script type="text/javascript" src="script.js"></script>
 </body>
 </html>
 

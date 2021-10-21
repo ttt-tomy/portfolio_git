@@ -138,8 +138,4 @@ $(function() {
       $('.globalMenuSp').removeClass('active');
       $('.hamburger-bg').fadeIn();
    });
-   //////////// 問い合わせフォーム送信 ////////////
-   $('.contact-form').find('form').submit(function(){
-      alert("送信します。「OK」若しくは「閉じる」をクリック後、しばらくおまちください。");
-   });
 });
