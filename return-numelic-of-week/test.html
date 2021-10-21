@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>曜日を0～6で返す関数テスト｜Tomy Portfolio</title>
+  </head>
+  <body>
+    <script type="text/javascript">
+    var year1 = window.prompt('何曜日か調べます。\nまずは、調べたい「年」を入力してください。');
+    year1 = parseInt(year1);
+    var month1 = window.prompt('次に調べたい「月」を入力してください');
+    month1 = parseInt(month1);
+    var day1 = window.prompt('最後に調べたい「日」を入力ください');
+    day1 = parseInt(day1);
+    document.write(
+    '<p>' + year1 + '年' + month1 + '月' + day1 + '日は...　'
+    + '<strong>' + getYoubi(year1, month1, day1) + '</strong>です。</p>'
+    );
+    //getdayテスト（指定日付を0～6で返していることの確認）
+    var x = new Date(year1, month1 - 1, day1);
+    console.log(x.getDay());
+
+    function getYoubi(year, month, day){
+      var youbi = ['日曜日','月曜日','火曜日','水曜日','木曜日','金曜日','土曜日'];
+      if(month>12){
+        return '月の入力に誤りがあります'
+      }
+      var dtoj = new Date(year, month - 1, day);
+      return youbi[dtoj.getDay()]; //getdayで指定日付の曜日を0～6で返す。
+    }
+    </script>
+
+  </body>
+</html>
