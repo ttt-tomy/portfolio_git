@@ -15,7 +15,7 @@ int main(void)
 	
 	DiscomfortIndex = 0.81 * temperature + 0.01 * humidity * (0.99 * temperature -14.3) + 46.3;
 	
-	printf("不快指数は、\"%f\"です\n",DiscomfortIndex);
+	printf("不快指数は、\"%lf\"です\n",DiscomfortIndex);
 	//「\」でエスケープできた
 	//第1引数が出力形式、%fが実数の出力フォーマットの記述("%.1f"で小数点以下1桁となる、第2引数以降が扱う変数指定。
 	
