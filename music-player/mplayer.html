@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang=ja dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Webミュージックプレイヤー</title>
+    <link rel="stylesheet" href="mplayer.css">
+  </head>
+  <body>
+    <div class="appframe">
+
+    <h1>Webﾐｭｰｼﾞｯｸﾌﾟﾚｲﾔｰ</h1>
+    <img src="pict_stop.png" alt="再生or停止">
+    <audio src="MySong.m4a" controls>
+      お使いのブラウザは非対応です。
+    </audio>
+    <p>聞きたい曲を選んでね！<a id="random" href="#">ランダム選択</a></p>
+    <ul>
+      <li data-file="MySong.m4a" class="active">ミュージック1</li>
+      <li data-file="MySong3.m4a">ミュージック2</li>
+      <li data-file="MySong2.m4a">ミュージック3</li>
+    </ul>
+    <script src="mplayer.js" charset="utf-8"></script>
+    </div>
+  </body>
+</html>
