@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang=ja dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>簡易入力フォーム</title>
+  </head>
+  <body>
+テスト入力フォームです。<br>
+住所を入力してください。<br>
+都道府県名の入力有無を含め出力します。<br>
+補足）4文字都道府県：神奈川県、和歌山県、鹿児島県
+<form action="city-output.php" method="post">
+  <table>
+    <tr>
+      <td>住所</td>
+      <td><input type="text" name="adress"></td>
+      <td text-align="center">
+        <input type="submit" value="送信">
+      </td>
+    </tr>
+  </table>
+</form>
+  </body>
+</html>
