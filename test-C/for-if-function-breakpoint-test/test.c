@@ -6,6 +6,30 @@
 #include <stdlib.h>
 //再入力で回す仕様にしたので使わなかったが、returnで定義した関数の終了、exitでプログラム自体の終了とスコープに違いがあることがわかった。
 
+//functionは、使えない模様(戻り値ありは型名を、戻り値なしはvoidらしい)
+//これで関数作成できる。あっ...下と同じか...
+//mainが優先的に実行され、定義関数は順不同だが、先に使うより前に記述するのが通例のよう
+int filter(int xx){
+	int error; //変数の発行
+	if(xx <= 0){
+		printf("正の数で入力してください\n");
+		error = 1 ;
+	}else{
+		error = 0 ;
+	}
+	return error ;
+}
+int even_n(int yy){
+	int error; //変数の発行
+	if(yy % 2){
+		printf("偶数で入力してください\n");
+		error = 1 ;
+	}else{
+		error = 0 ;
+	}
+	return error ;
+}
+
 int main (void){ //main:メイン関数の意味らしい void:空の意味(引数)
 	//整数型の配列a,整数型の変数i,整数型の公差differenceを宣言
 	int i , sum , sumleg , sumlegx , turu , kame , xx , error , error2 , anser;
@@ -40,29 +64,6 @@ int main (void){ //main:メイン関数の意味らしい void:空の意味(引�
 	if(anser == 0)printf("その組み合わせの解はありません\n");
 	
 	return 0 ;
-}
-
-//functionは、使えない模様(戻り値ありは型名を、戻り値なしはvoidらしい)
-//これで関数作成できる。あっ...上と同じか...
-int filter(int xx){
-	int error; //変数の発行
-	if(xx <= 0){
-		printf("正の数で入力してください\n");
-		error = 1 ;
-	}else{
-		error = 0 ;
-	}
-	return error ;
-}
-int even_n(int yy){
-	int error; //変数の発行
-	if(yy % 2){
-		printf("偶数で入力してください\n");
-		error = 1 ;
-	}else{
-		error = 0 ;
-	}
-	return error ;
 }
 
 /*
