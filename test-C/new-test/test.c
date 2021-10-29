@@ -6,32 +6,44 @@
 
 int main (void){ //main:メイン関数の意味らしい void:空の意味(引数)
 	
-	void drawLine1(int length){
+	//返り値指定なしの関数発行
+	//実行内容をそのまま返してる模様
+	//voidの箇所を変えればデータ型が指定できるのかな？
+	void drawLine(int length){
 		int i ;
-		
+		//引数(入力文字数)プラス2回分指定記号を繰り返す
 		for(i= 0;i<length+2;i++){
 			printf("+");
 		}
 		printf("\n");
 	}
 	
+	//引数なしの関数も発行できる
+	void Line(void){
+		printf("-----------\n");
+	}
 	
-	void drawLine2(char str[]){
+	//返り値なしの関数発行
+	void sideDecoration(char str[]){//引数に配列の文字列を指定※仮変数の場合は[]内不要
+		//引数(文字列)を指定記号で囲う
 		printf("+");
 		printf("%s",str);
 		printf("+\n");
 	}
 	
-	char str[128];
+	char str[128];//7bitと関係ありそう...ASCII?
 	int length;
 
 	printf("文字列を入力してください");
+	//入力
 	scanf("%s",str);
+	//str文字数を代入
 	length = strlen(str);
 	
-	drawLine1(length);
-	drawLine2(str);
-	drawLine1(length);
+	drawLine(length);
+	sideDecoration(str);
+	drawLine(length);
+	Line();
 	
 	return(0);
 	
@@ -39,7 +51,18 @@ int main (void){ //main:メイン関数の意味らしい void:空の意味(引�
 
 /*
 実行結果
-
+[root@localhost new-test]# ./a.out
+文字列を入力してくださいaaa
++++++
++aaa+
++++++
+-----------
+[root@localhost new-test]# ./a.out
+文字列を入力してくださいあああ
++++++++++++
++あああ+
++++++++++++
+-----------
 */
 
 /*
