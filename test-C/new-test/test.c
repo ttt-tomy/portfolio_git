@@ -1,68 +1,27 @@
 /* test.c */
 
-//標準入出力を利用する為のヘッダファイル(ライブラリ)読み込み
 #include <stdio.h>
-#include <string.h>
 
-int main (void){ //main:メイン関数の意味らしい void:空の意味(引数)
+int main (void){
 	
-	//返り値指定なしの関数発行
-	//実行内容をそのまま返してる模様
-	//voidの箇所を変えればデータ型が指定できるのかな？
-	void drawLine(int length){
-		int i ;
-		//引数(入力文字数)プラス2回分指定記号を繰り返す
-		for(i= 0;i<length+2;i++){
-			printf("+");
-		}
-		printf("\n");
-	}
+	char org_str[] = "apple";
+	char copy_str[128];
 	
-	//引数なしの関数も発行できる
-	void Line(void){
-		printf("-----------\n");
-	}
+	printf("original string %s\n",org_str);
+	printf("copy string %s\n",copy_str);
 	
-	//返り値なしの関数発行
-	void sideDecoration(char str[]){//引数に配列の文字列を指定※仮変数の場合は[]内不要
-		//引数(文字列)を指定記号で囲う
-		printf("+");
-		printf("%s",str);
-		printf("+\n");
-	}
-	
-	char str[128];//7bitと関係ありそう...ASCII?
-	int length;
-
-	printf("文字列を入力してください");
-	//入力
-	scanf("%s",str);
-	//str文字数を代入
-	length = strlen(str);
-	
-	drawLine(length);
-	sideDecoration(str);
-	drawLine(length);
-	Line();
-	
-	return(0);
-	
+	return 0 ;
 }
 
-/*
-実行結果
-[root@localhost new-test]# ./a.out
-文字列を入力してくださいaaa
-+++++
-+aaa+
-+++++
------------
-[root@localhost new-test]# ./a.out
-文字列を入力してくださいあああ
-+++++++++++
-+あああ+
-+++++++++++
------------
+/*実行結果
+original string apple
+copy string 
+→資料によるとデタラメな値が表示されるようだが、何も表示されなかった。
+  他テストして変数を読みに行っているのは確認できた、よって中身がない模様
+
+//char copy_str[128]; → char copy_str[128]="aaa";
+original string apple
+copy string aaa
 */
 
 /*
@@ -74,5 +33,4 @@ https://k-cube.co.jp/wakaba/server/head_top.html
 ライブラリのリンクを忘れずに(コンパイル時) ※今回は-lm(link math)
 https://qiita.com/percipere/items/678a8ec1299a7564f6a3
 */
-
 
