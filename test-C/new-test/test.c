@@ -5,7 +5,7 @@
 int main (void){
 	
 	char org_str[] = "apple";
-	char copy_str[128];
+	char copy_str[128] = {0};//配列の初期化
 	
 	printf("original string %s\n",org_str);
 	printf("copy string %s\n",copy_str);
