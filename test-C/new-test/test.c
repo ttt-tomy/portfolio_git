@@ -7,6 +7,13 @@ int main (void){
 	char org_str[] = "apple";
 	char copy_str[128] = {0};//配列の初期化
 	
+	copy_str[0] = org_str[0];
+	copy_str[1] = org_str[1];
+	copy_str[2] = org_str[2];
+	copy_str[3] = org_str[3];
+	copy_str[4] = org_str[4];
+	copy_str[5] = org_str[5];
+	
 	printf("original string %s\n",org_str);
 	printf("copy string %s\n",copy_str);
 	
@@ -15,13 +22,7 @@ int main (void){
 
 /*実行結果
 original string apple
-copy string 
-→資料によるとデタラメな値が表示されるようだが、何も表示されなかった。
-  他テストして変数を読みに行っているのは確認できた、よって中身がない模様
-
-//char copy_str[128]; → char copy_str[128]="aaa";
-original string apple
-copy string aaa
+copy string apple
 */
 
 /*
