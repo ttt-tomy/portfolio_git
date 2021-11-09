@@ -21,7 +21,7 @@ int main (void){
 
 /*実行結果
 original string apple
-copy string apple
+copy string appl
 */
 
 /*
