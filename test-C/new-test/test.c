@@ -1,18 +1,19 @@
 /* test.c */
 
 #include <stdio.h>
+#include <string.h>
 
 int main (void){
 	
 	char org_str[] = "apple";
 	char copy_str[128] = {0};//配列の初期化
+	int i ;
 	
-	copy_str[0] = org_str[0];
-	copy_str[1] = org_str[1];
-	copy_str[2] = org_str[2];
-	copy_str[3] = org_str[3];
-	copy_str[4] = org_str[4];
-	copy_str[5] = org_str[5];
+	//strlenはnullは数えてない模様
+	for (i = 0 ; i < strlen(org_str) + 1 ; i++){
+		copy_str[i] = org_str[i];
+	}
+
 	
 	printf("original string %s\n",org_str);
 	printf("copy string %s\n",copy_str);
