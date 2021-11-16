@@ -5,15 +5,22 @@
 
 int main (void){
 	
-	char org_str[] = "Apple";
+	char org_str[128];
 	char encode_str[128] = {0};//配列の初期化
 	int i ;
 	
-	//strlenはnullは数えてない模様
+	printf("input original string : ");
+	scanf("%s", org_str);
+	
+	//nullもあるから注意
 	for (i = 0 ; i < strlen(org_str) + 1 ; i++){
 		if ((org_str[i] >= 'a') && (org_str[i] <= 'z')){
-			//数字表記に1を加えて暗号化
-			encode_str[i] = org_str[i] + 1;
+			if(org_str[i] == 'z'){
+				encode_str[i] = 'a' ;
+			}else{
+				//数字表記に1を加えて暗号化
+				encode_str[i] = org_str[i] + 1;
+			}
 		}else{
 			//数字表記に1を加えずにそのまま代入(暗号化しない)
 			encode_str[i] = org_str[i];
@@ -29,9 +36,10 @@ int main (void){
 }
 
 /*実行結果
-original string Apple
-original string 1316729744
-encode string Aqqmf
+input original string : hjioahio
+original string hjioahio
+original string -1714431120
+encode string ikjpbijp
 */
 
 /*
