@@ -3,16 +3,11 @@
 #include <stdio.h>
 #include <string.h>
 
-int main (void){
-	
-	char org_str[128];
-	char encode_str[128] = {0};//配列の初期化
+//function 特徴として以下の条件下を引数として利用
+//関数内変数であり、関数外で使いたい変数 ← ※スコープの考え方がjavascriptと異る気がする
+void encode (char org_str[],char encode_str[]){
 	int i ;
-	
-	printf("input original string : ");
-	scanf("%s", org_str);
-	
-	//nullもあるから注意
+		//nullもあるから注意
 	for (i = 0 ; i < strlen(org_str) + 1 ; i++){
 		if ((org_str[i] >= 'a') && (org_str[i] <= 'z')){
 			if(org_str[i] == 'z'){
@@ -26,21 +21,63 @@ int main (void){
 			encode_str[i] = org_str[i];
 		}
 	}
+}
+void decode (char en[],char dec[]){
+	int i ;
+	for (i = 0 ; i < strlen(en) + 1 ; i++){
+		if ((en[i] >= 'a') && (en[i] <= 'z')){
+			if(en[i] == 'a'){
+				dec[i] = 'z' ;
+			}else{
+				dec[i] = en[i] - 1;
+			}
+		}else{
+			dec[i] = en[i];
+		}
+	}
+}
 
+int main (void){
+	
+	char org_str[128];
+	char encode_str[128] = {0};//配列の初期化
+	char decode_str[128] = {0};
+	int i ;
+	
+	printf("input original string : ");
+	scanf("%s", org_str);
+	
+	//引数で指定すれば関数外スコープで扱えるみたい
+	encode(org_str,encode_str);
 	
 	printf("original string %s\n",org_str);
 	printf("original string %d\n",org_str);
 	printf("encode string %s\n",encode_str);
 	
+	printf("input encode string : ");
+	scanf("%s", encode_str);
+	
+	//引数の名前は同一にする必要はなく、また配列であるため記憶領域を共有しておりスコープを飛び越えている原理らしい
+	decode(encode_str,decode_str);
+	
+	printf("encode string %s\n",encode_str);
+	printf("encode string %d\n",encode_str);
+	printf("decode string %s\n",decode_str);
+	
 	return 0 ;
 }
 
 /*実行結果
-input original string : hjioahio
-original string hjioahio
-original string -1714431120
-encode string ikjpbijp
+input original string : Apple
+original string Apple
+original string 1530903872
+encode string Aqqmf
+input encode string : Aqqmf
+encode string Aqqmf
+encode string 1530903744
+decode string Apple
 */
+//なんでマイナスなのかはわからんけどstring.hのライブラリを読み込んだか%dの返し方が変わったとかかな？
 
 /*
 参考
