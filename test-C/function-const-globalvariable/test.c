@@ -9,7 +9,7 @@
 const char alphabet[] = "abcdefghijklmnopqrstuvwxyz";
 //char だから1文字ずつ代入されてるのか
 
-//int型を返すsearch関数 ※関数定義(functio)
+//int型を返すsearch関数 ※関数定義(function)
 int search(int ch ,int w ){
 	int i ;
 	int find = -1;
