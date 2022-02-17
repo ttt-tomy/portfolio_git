@@ -15,3 +15,4 @@ $ gcc sample.c -o hogehoge
 $ cc sample.c -o hogehoge 
 参考https://slacknotebook.com/how-to-write-run-c-program-on-linux/
 */
+//テストコーディングあああああああ
